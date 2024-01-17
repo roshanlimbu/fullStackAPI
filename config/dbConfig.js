@@ -1,3 +1,4 @@
+// ./config/dbConfig.js
 module.exports = {
   HOST: "localhost",
   USER: "root",
