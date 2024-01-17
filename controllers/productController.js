@@ -1,7 +1,7 @@
-import db from "../models";
+const db = require("../models");
 
 const Product = db.products;
-const Review = db.reviews;
+// const Review = db.reviews;
 
 // creating a product
 const createProduct = async (req, res) => {
@@ -27,7 +27,7 @@ const createProduct = async (req, res) => {
 
 // getting all the product
 
-const getAllProduct = async (req, res) => {
+const getAllProducts = async (req, res) => {
   try {
     let products = await Product.findAll({ attributes: ["title", "price"] });
     res.status(200).send(products);
@@ -93,4 +93,24 @@ const updateProductById = async (req, res) => {
       error: "Failed to update products by id.",
     });
   }
+};
+
+const deleteProductById = async (req, res) => {
+  try {
+    let id = parseInt(req.params.id);
+    await Product.destroy({ where: { id: id } });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "Failed to delete products by id.",
+    });
+  }
+};
+
+module.exports = {
+  createProduct,
+  getAllProducts,
+  getProductById,
+  updateProductById,
+  deleteProductById,
 };
