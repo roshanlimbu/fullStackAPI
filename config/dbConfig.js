@@ -1,5 +1,3 @@
-const { DataTypes } = require("sequelize");
-
 module.exports = {
   HOST: "localhost",
   USER: "root",
@@ -12,11 +10,4 @@ module.exports = {
     idle: 10000,
     acquire: 30000,
   },
-};
-
-const db = {
-  seqeulize,
-  Sequelize,
-
-  products: require("./productModel.js")(seqeulize, DataTypes),
 };
