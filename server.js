@@ -5,13 +5,19 @@ const app = express();
 
 const PORT = process.env.PORT || 8081;
 var corsOptions = {
-  origin: "https//localhost:8080",
+  origin: "https://localhost:8080",
 };
+
+// router
+const router = require("./routes/productRoutes.js");
+app.use("/api/product", router);
+
 // middlewares
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// test api
 app.get("/", (req, res) => {
   res.send({ msg: "hello from backend" });
 });
