@@ -5,13 +5,14 @@ const Product = db.products;
 
 // creating a product
 const createProduct = async (req, res) => {
+  console.log(req.body);
   try {
     let productInfo = {
-      id: req.body.id,
       title: req.body.title,
       price: req.body.price,
       description: req.body.description,
     };
+    console.log(req.body.id);
     const product = await Product.create(productInfo);
     res.status(200).json({
       data: "Created a new Product",
@@ -26,7 +27,6 @@ const createProduct = async (req, res) => {
 };
 
 // getting all the product
-
 const getAllProducts = async (req, res) => {
   try {
     let products = await Product.findAll({ attributes: ["title", "price"] });

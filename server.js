@@ -10,7 +10,6 @@ var corsOptions = {
 
 // router
 const router = require("./routes/productRoutes.js");
-app.use("/api/product", router);
 
 // middlewares
 app.use(cors(corsOptions));
@@ -22,6 +21,7 @@ app.get("/", (req, res) => {
   res.send({ msg: "hello from backend" });
 });
 
+app.use("/api/product", router);
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
