@@ -26,9 +26,9 @@ testDbConnection();
 const db = {
   sequelize,
   Sequelize,
-  products: require("./productModel.js")(Sequelize, DataTypes),
-  reiews: require("./reviewModel.js")(Sequelize, DataTypes),
 };
+db.products = require("./productModel.js")(sequelize, DataTypes);
+
 async function databaseSync() {
   try {
     await sequelize.sync({ force: false }),
