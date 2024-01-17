@@ -59,3 +59,38 @@ const getProductById = async (req, res) => {
     });
   }
 };
+
+// update product by id
+const updateProductById = async (req, res) => {
+  try {
+    // checking here if the product is there or not
+    const productId = parseInt(req.params.id);
+    const productExists = await Product.findByPk(productId);
+    if (!productExists) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found.",
+      });
+    }
+
+    await Product.update(
+      {
+        ...req.body,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      },
+    );
+    res.status(200).json({
+      success: true,
+      message: "Product updated successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: "Failed to update products by id.",
+    });
+  }
+};
