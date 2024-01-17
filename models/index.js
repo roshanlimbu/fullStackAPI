@@ -31,7 +31,7 @@ db.products = require("./productModel.js")(sequelize, DataTypes);
 
 async function databaseSync() {
   try {
-    await sequelize.sync({ force: true });
+    await sequelize.sync({ force: false });
     console.log("Database sync completed.");
   } catch (error) {
     console.error(error);

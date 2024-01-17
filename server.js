@@ -3,6 +3,10 @@ require("dotenv").config();
 const cors = require("cors");
 const app = express();
 
+// middlewares
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 const PORT = process.env.PORT || 8081;
 var corsOptions = {
   origin: "https://localhost:8080",
@@ -10,11 +14,6 @@ var corsOptions = {
 
 // router
 const router = require("./routes/productRoutes.js");
-
-// middlewares
-app.use(cors(corsOptions));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 // test api
 app.get("/", (req, res) => {
